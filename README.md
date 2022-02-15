@@ -1,3 +1,3 @@
 # library-project
 
-A simple little library project built with HTML, CSS, & JS. A live demo can be found [here]()
+A simple little library project built with HTML, CSS, & JS. A live demo can be found [here](https://jaredguzman.github.io/library-project/)
