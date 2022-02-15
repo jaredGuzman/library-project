@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="./media/js/script.js" defer></script>
+    <link rel="stylesheet" href="./media/css/styles.css">
+    <link rel="stylesheet" href="./media/css/normalize.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <title>Books :)</title>
+</head>
+
+<body>
+    <div class="book-form-bg hidden">
+        <div class="book-form-container">
+            <h2>Add a new book to the library!</h2>
+            <form id="add-new-book-form">
+                <label for="book-form-title">Title*</label>
+                <input id="book-form-title" type="text" required>
+                <label for="book-form-author">Author*</label>
+                <input id="book-form-author" type="text" required>
+                <label for="book-page-count">Page Count*</label>
+                <input id="book-page-count" type="number" min="1" required>
+                <label for="read-book-status" required>Has it been read yet?*</label>
+                <select name="read-book-status" id="read-book-status">
+                    <option value="read">Read</option>
+                    <option value="unread">Unread</option>
+                </select>
+                <label for="other-info">Other info</label>
+                <textarea id="other-info" rows="5"></textarea>
+            </form>
+            <button id="add-book-card">Add book</button>
+            <small>* - Required</small>
+        </div>
+    </div>
+    <div class="content-wrapper">
+        <section class="title-container">
+            <div class="title">
+                <h1>Welcome to my Library!</h1>
+                <p class="init-intro">Hi there! This is a little app that I've begun making. Click that button to add a new book to the list!</p>
+            </div>
+            <button class="add-book-form">Add a book to the list!</button>
+        </section>
+        <section class="cards">
+        </section>
+        <footer class="footer-info">
+            <p>Made by <a href="https://jaredguzman.com" target="_blank">Jared Guzman</a>, hosted on <a href="https://github.com/jaredGuzman" target="_blank">Github</a></p>
+        </footer>
+    </div>
+</body>
+
+</html>
