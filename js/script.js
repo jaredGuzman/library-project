@@ -1,66 +1,95 @@
-// TODO
-// * Generate form in js if ! one already on page && on button click
-// * On form submit:
-//   * Set newBook = Book() and addBookToLibraryBook(newBook)on form submit
-//   * Remove form from page
-//   * Update 
-
-
 let myLibrary = [];
 let newBook;
 
-function Book(title, author, pageCount, read, other) {
-    this.title = title;
-    this.author = author;
-    this.pageCount = pageCount;
-    this.read = read;
-    this.other = other;
-}
+class Book {
+    constructor(title, author, pageCount, read, other) {
+        this.title = title;
+        this.author = author;
+        this.pageCount = pageCount;
+        this.read = read;
+        this.other = other;
+    }
 
+    get title() {
+        return this.title;
+    }
 
-// Pretty simple, given a Book object, it adds the book to the library array 
+    get author() {
+        return this.author;
+    }
 
-function addBookToLibrary(book) {
-    if (book instanceof Book) {
-        myLibrary.push(book);
+    get pageCount() {
+        return this.pageCount;
+    }
+
+    get read() {
+        return this.readMessage;
+    }
+
+    readMessage() {
+        if (this.read == true) {
+            return `This book has ${this.pageCount} pages. It has been read.`
+        } else if (this.read == false) {
+            return `This book has ${this.pageCount} pages. It has not been read yet.`
+        }
+    }
+
+    get other() {
+        return this.other;
     }
 }
 
-// Title must be a string and is case sensitive
+// function Book(title, author, pageCount, read, other) {
+//     this.title = title;
+//     this.author = author;
+//     this.pageCount = pageCount;
+//     this.read = read;
+//     this.other = other;
+// }
 
-function deleteBook(title) {
-    let tempLibrary = [];
-    myLibrary.forEach(book => {
-        if (book.title != title) {
-            tempLibrary.push(book);
+class Library {
+    // books is an array of Book objects
+    constructor(books) {
+        this.books = books;
+    };
+
+    library = [];
+
+    addBook(book) {
+        if (book instanceof Book) {
+            this.library.push(book);
         }
-    })
-    myLibrary = tempLibrary;
-}
+    };
 
-function toggleReadStatus(title) {
-    myLibrary.forEach(book => {
-        if (book.title == title) {
-            switch (book.read) {
-                case ('read'):
-                    book.read = 'unread';
-                    break;
-                case ('unread'):
-                    book.read = 'read';
-                    break;
+    deleteBook(title) {
+        let tempLibrary = [];
+        this.library.forEach(book => {
+            if (book.title != title) {
+                tempLibrary.push(book);
             }
-        }
-    })
+        });
+    };
+
+    toggleReadStatus(title) {
+        this.library.forEach(book => {
+            if (book.title == title) {
+                switch (book.read) {
+                    case ('read'):
+                        book.read = 'unread';
+                        break;
+                    case ('unread'):
+                        book.read = 'read';
+                        break;
+                }
+            }
+        })
+    }
 }
 
-
-
-
-// Main function of this JS
-// 
-// 
+let myLibrary = new Library({});
 
 function makeBookCard(book) {
+
     // Generate book card container
     let bookCard = document.createElement('div');
     bookCard.classList.add('card');
@@ -146,7 +175,7 @@ function makeBookCard(book) {
 function displayBooks() {
     let bookCardContainer = document.querySelector('.cards');
     bookCardContainer.innerHTML = ''; // Reset all book cards
-    myLibrary.forEach((book) => {
+    myLibrary.library.forEach((book) => {
         let bookCard = makeBookCard(book);
         bookCardContainer.appendChild(bookCard);
     })
@@ -231,8 +260,7 @@ document.querySelector('#add-book-card').addEventListener('click', () => {
 
     } else {
 
-        // Make book
-        let newBook;
+
         if (formOtherInfo.value == '') {
             newBook = new Book(formBookTitle.value, formAuthor.value, formPageCount.value, formReadStatus.value);
         } else {
